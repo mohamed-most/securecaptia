@@ -1,0 +1,111 @@
+<form
+  [formGroup]="loginForm"
+  class="mx-auto mt-10 max-w-sm bg-white border border-gray-200 p-8 flex flex-col gap-6 rounded-2xl shadow-sm"
+>
+  <div class="flex flex-col items-center gap-3">
+    <div class="w-20 h-20 rounded-full overflow-hidden bg-gray-50 border border-gray-100">
+      <img src="secure_captia_logo.avif" class="object-cover w-full h-full" alt="Company Logo" />
+    </div>
+    <h1 class="text-2xl font-bold text-gray-900">Welcome back</h1>
+    <p class="text-gray-500 text-sm">
+      <span class="text-blue-600 font-medium">Sign in</span> to your account
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-1.5">
+      <label for="email" class="text-sm font-semibold text-gray-700">Email *</label>
+      <div class="relative">
+        <input
+          formControlName="email"
+          id="email"
+          type="email"
+          (focus)="loginForm.get('email')?.markAsUntouched()"
+          [class.border-red-500]="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+          [class.border-green-500]="
+            loginForm.get('email')?.valid && loginForm.get('email')?.touched
+          "
+          class="w-full bg-white border border-gray-300 rounded-xl px-4 py-2.5 transition-all outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+          placeholder="eg. mohamed@example.com"
+        />
+
+        @if (loginForm.get('email')?.valid && loginForm.get('email')?.touched) {
+          <span class="absolute right-3 top-2.5 text-green-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+          </span>
+        }
+      </div>
+
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <p
+          class="text-red-500 text-xs border-l-2 border-red-500 pl-2 mt-1 animate-in fade-in duration-200"
+        >
+          Please enter a valid email address.
+        </p>
+      }
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label class="text-sm font-semibold text-gray-700">Password *</label>
+      <div class="relative">
+        <input
+          formControlName="password"
+          id="password"
+          type="password"
+          (focus)="loginForm.get('password')?.markAsUntouched()"
+          [class.border-red-500]="
+            loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+          "
+          [class.border-green-500]="
+            loginForm.get('password')?.valid && loginForm.get('password')?.touched
+          "
+          class="w-full bg-white border border-gray-300 rounded-xl px-4 py-2.5 transition-all outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+          placeholder="••••••••"
+        />
+
+        @if (loginForm.get('password')?.valid && loginForm.get('password')?.touched) {
+          <span class="absolute right-3 top-2.5 text-green-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+          </span>
+        }
+      </div>
+
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <p
+          class="text-red-500 text-xs border-l-2 border-red-500 pl-2 mt-1 animate-in fade-in duration-200"
+        >
+          Must contain: Uppercase, Lowercase, Number, and (_ or $).
+        </p>
+      }
+    </div>
+  </div>
+
+  <button
+    [disabled]="loginForm.invalid"
+    type="submit"
+    class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98] disabled:bg-gray-300 disabled:cursor-not-allowed"
+  >
+    Login
+  </button>
+
+  <p class="text-center text-sm text-gray-500">
+    Don't have an account?
+    <a href="#" class="text-blue-600 hover:underline font-medium cursor-pointer">Create one</a>
+  </p>
+</form>
